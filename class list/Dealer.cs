@@ -5,18 +5,16 @@ using System.Text;
 
 namespace class_list
 {
-    public class Dealer
+    public class Dealer : User
     {
         private List<Card> deck;
-        private List<Card> hand;
         
-        public List<Card> Hand { get => hand; set => hand = value; }
         public List<Card> Deck { get => deck; set => deck = value; }
 
         public void Generate()
         {
             deck = new List<Card>();
-            hand = new List<Card>();
+            Hand = new List<Card>();
 
             char[] suits = { '♥', '♦', '♣', '♠' };
 
@@ -48,15 +46,10 @@ namespace class_list
             return c;
         }
 
-        public void AddCard(Card c)
+        public void Init()
         {
-            hand.Add(c);
-        }
-
-        public void init()
-        {
-            AddCard( Deal() );
-            AddCard( Deal() );
+            AddCard(Deal());
+            AddCard(Deal());
         }
 
     }  
