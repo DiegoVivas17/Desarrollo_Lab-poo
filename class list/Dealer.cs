@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace class_list
@@ -7,10 +8,14 @@ namespace class_list
     public class Dealer
     {
         private List<Card> deck;
+        private List<Card> hand;
+        
+        public List<Card> Hand { get => hand; set => hand = value; }
+        public List<Card> Deck { get => deck; set => deck = value; }
 
         public void Generate()
         {
-            deck = new List<Card>();
+            Deck = new List<Card>();
 
             char[] suits = { '♥', '♦', '♣', '♠' };
 
@@ -22,10 +27,18 @@ namespace class_list
                 foreach (string sy in symbols)
                 {
                     Card c = new Card(su, sy);
-                    deck.Add(c);
+                    Deck.Add(c);
                 }
             }
         }
 
-    }
+        public void Randomize()
+        {
+            Random rnd = new Random();
+
+            this.deck = this.deck.OrderBy(x => (rnd.Next())).ToList();
+
+        }
+
+    }   
 }
