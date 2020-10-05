@@ -15,7 +15,8 @@ namespace class_list
 
         public void Generate()
         {
-            Deck = new List<Card>();
+            deck = new List<Card>();
+            hand = new List<Card>();
 
             char[] suits = { '♥', '♦', '♣', '♠' };
 
@@ -40,5 +41,23 @@ namespace class_list
 
         }
 
-    }   
+        public Card Deal()
+        {
+            Card c = this.deck.First();
+            this.deck.Remove(c);
+            return c;
+        }
+
+        public void AddCard(Card c)
+        {
+            hand.Add(c);
+        }
+
+        public void init()
+        {
+            AddCard( Deal() );
+            AddCard( Deal() );
+        }
+
+    }  
 }
